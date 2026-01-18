@@ -1,4 +1,4 @@
-import { sort } from './sort';
+import { sort } from '../sort';
 import * as assert from 'assert';
 
 console.log('Running tests...');
