@@ -15,14 +15,29 @@ export function sort(width: number, height: number, length: number, mass: number
 
   // Determine if the package is bulky
   // Bulky if volume >= 1,000,000 cm³ OR any dimension >= 150 cm
-
-  const isBulky = volume >= 1000000 || width >= 150 || height >= 150 || length >= 150;
+  let isBulky = false;
+  if (volume >= 1000000) {
+    isBulky = true;
+  } else if (width >= 150) {
+    isBulky = true;
+  } else if (height >= 150) {
+    isBulky = true;
+  } else if (length >= 150) {
+    isBulky = true;
+  }
 
   // Determine if the package is heavy
   // Heavy if mass >= 20 kg
-  const isHeavy = mass >= 20;
+  let isHeavy = mass >= 20;
 
   // Dispatch to the correct stack
+  if (isBulky && isHeavy) {
+    return 'REJECTED';
+  }
 
-  return isBulky && isHeavy ? 'REJECTED' : isBulky || isHeavy ? 'SPECIAL' : 'STANDARD';
+  if (isBulky || isHeavy) {
+    return 'SPECIAL';
+  }
+
+  return 'STANDARD';
 }

@@ -16,7 +16,7 @@ pub fn sort(width: f64, height: f64, length: f64, mass: f64) -> String {
 
     // Determine if the package is bulky
     // Bulky if volume >= 1,000,000 cm³ OR any dimension >= 150 cm
-    let is_bulky = false;
+    let mut is_bulky = false;
     if volume >= 1_000_000.0 {
         is_bulky = true;
     }

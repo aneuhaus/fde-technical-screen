@@ -17,11 +17,25 @@ def sort(width, height, length, mass):
     
     # Determine if the package is bulky
     # Bulky if volume >= 1,000,000 cm³ OR any dimension >= 150 cm
-    is_bulky = volume >= 1000000 or width >= 150 or height >= 150 or length >= 150
+    is_bulky = False
+    if volume >= 1000000:
+        is_bulky = True
+    if width >= 150:
+        is_bulky = True
+    if height >= 150:
+        is_bulky = True
+    if length >= 150:
+        is_bulky = True
     
     # Determine if the package is heavy
     # Heavy if mass >= 20 kg
     is_heavy = mass >= 20
     
     # Dispatch to the correct stack
-    return "REJECTED" if is_bulky and is_heavy else "SPECIAL" if is_bulky or is_heavy else "STANDARD"
+    if is_bulky and is_heavy:
+        return "REJECTED"
+    
+    if is_bulky or is_heavy:
+        return "SPECIAL"
+        
+    return "STANDARD"
