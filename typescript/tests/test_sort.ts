@@ -1,4 +1,5 @@
 import { sort } from '../sort';
+// @ts-ignore
 import * as assert from 'assert';
 
 console.log('Running tests...');
@@ -36,5 +37,6 @@ if (failed === 0) {
 console.log(`\ntest result: ${overallStatus}. ${passed} passed; ${failed} failed;`);
 
 if (failed > 0) {
+    // @ts-ignore
     process.exit(1);
 }
