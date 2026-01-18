@@ -22,36 +22,27 @@ The objective is to write a function that dispatches packages to the correct sta
 ```
 .
 ├── python/
-│   ├── sort.py             # Implementation
+│   ├── sort.py             
 │   └── tests/
-│       └── test_sort.py    # Tests
+│       └── test_sort.py
 ├── typescript/
-│   ├── sort.ts             # Implementation
+│   ├── sort.ts             
 │   └── tests/
-│       └── test_sort.ts    # Tests
+│       └── test_sort.ts
 └── rust/
     ├── src/
-    │   └── sort.rs         # Implementation
+    │   └── sort.rs         
     └── tests/
-        └── test_sort.rs    # Integration tests
 ```
-
+        
 ## How to Run Tests
 
-### Python
-Requires Python 3.x.
+### Run Python, Rust, and Typescript tests at once
 ```bash
-python3 python/tests/test_sort.py
+sh all_tests.sh
 ```
 
-### TypeScript
-Requires Node.js.
-```bash
-npx -y tsx typescript/tests/test_sort.ts
-```
+## Requirements
 
-### Rust
-Requires Cargo.
-```bash
-cd rust && cargo test
-```
+Python 3.x, Node.js, and Cargo.
+Requirements are checked by `all_tests.sh`.
