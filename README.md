@@ -4,7 +4,7 @@ This repository contains multi-language solutions (Python, TypeScript, Rust) for
 
 ## Challenge Objective
 
-The objective is to write a function that dispatches packages to the correct stack according to their volume and mass.
+The objective is to write a function that dispatches packages to the correct stack according to their volume and mass. Read full challenge description in `challenge.md`.
 
 ### Rules
 
