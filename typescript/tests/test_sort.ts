@@ -29,7 +29,11 @@ for (const { name, args, expected } of testCases) {
     }
 }
 
-console.log(`\ntest result: ${failed === 0 ? 'ok' : 'FAILED'}. ${passed} passed; ${failed} failed;`);
+let overallStatus = 'FAILED';
+if (failed === 0) {
+    overallStatus = 'ok';
+}
+console.log(`\ntest result: ${overallStatus}. ${passed} passed; ${failed} failed;`);
 
 if (failed > 0) {
     process.exit(1);
