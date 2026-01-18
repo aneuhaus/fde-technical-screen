@@ -40,4 +40,4 @@ class TestSort(unittest.TestCase):
         self.assertEqual(sort(1000, 10, 100, 10), "SPECIAL")
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(verbosity=2)

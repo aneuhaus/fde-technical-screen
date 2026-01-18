@@ -3,43 +3,34 @@ import * as assert from 'assert';
 
 console.log('Running tests...');
 
-function testSort() {
-    // Test Case 1: Standard package
-    // Volume: 100*100*50 = 500,000 (< 1,000,000)
-    // Dimensions: all < 150
-    // Mass: 10 (< 20)
-    assert.strictEqual(sort(100, 100, 50, 10), 'STANDARD', 'Test Case 1 Failed: Should be STANDARD');
+const testCases = [
+    { name: 'test_standard_package', args: [100, 100, 50, 10], expected: 'STANDARD' },
+    { name: 'test_bulky_package_by_volume', args: [100, 100, 100, 10], expected: 'SPECIAL' },
+    { name: 'test_bulky_package_by_dimension', args: [150, 10, 10, 10], expected: 'SPECIAL' },
+    { name: 'test_heavy_package', args: [10, 10, 10, 20], expected: 'SPECIAL' },
+    { name: 'test_rejected_package', args: [100, 100, 100, 20], expected: 'REJECTED' },
+    { name: 'test_edge_case_exactly_bulky', args: [1000, 10, 100, 10], expected: 'SPECIAL' },
+];
 
-    // Test Case 2: Bulky package (by volume)
-    // Volume: 100*100*100 = 1,000,000 (>= 1,000,000)
-    // Mass: 10 (< 20)
-    assert.strictEqual(sort(100, 100, 100, 10), 'SPECIAL', 'Test Case 2 Failed: Should be SPECIAL (bulky by volume)');
+let passed = 0;
+let failed = 0;
 
-    // Test Case 3: Bulky package (by dimension)
-    // Volume: 150*10*10 = 15,000 (< 1,000,000)
-    // Dimension: 150 (>= 150)
-    // Mass: 10 (< 20)
-    assert.strictEqual(sort(150, 10, 10, 10), 'SPECIAL', 'Test Case 3 Failed: Should be SPECIAL (bulky by dimension)');
-
-    // Test Case 4: Heavy package
-    // Volume: 10*10*10 = 1,000 (< 1,000,000)
-    // Mass: 20 (>= 20)
-    assert.strictEqual(sort(10, 10, 10, 20), 'SPECIAL', 'Test Case 4 Failed: Should be SPECIAL (heavy)');
-
-    // Test Case 5: Rejected package (Bulky and Heavy)
-    // Volume: 100*100*100 = 1,000,000 (>= 1,000,000)
-    // Mass: 20 (>= 20)
-    assert.strictEqual(sort(100, 100, 100, 20), 'REJECTED', 'Test Case 5 Failed: Should be REJECTED');
-
-    // Test Case 6: Edge case - exactly bulky threshold
-    assert.strictEqual(sort(1000, 10, 100, 10), 'SPECIAL', 'Test Case 6 Failed: Edge case should be SPECIAL');
-
-    console.log('All tests passed!');
+for (const { name, args, expected } of testCases) {
+    try {
+        // @ts-ignore
+        const actual = sort(...args);
+        assert.strictEqual(actual, expected);
+        console.log(`test ${name} ... ok`);
+        passed++;
+    } catch (e: any) {
+        console.log(`test ${name} ... FAILED`);
+        console.error(e.message);
+        failed++;
+    }
 }
 
-try {
-    testSort();
-} catch (e) {
-    console.error('Tests failed:', e);
+console.log(`\ntest result: ${failed === 0 ? 'ok' : 'FAILED'}. ${passed} passed; ${failed} failed;`);
+
+if (failed > 0) {
     process.exit(1);
 }
