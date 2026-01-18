@@ -24,10 +24,4 @@ def sort(width, height, length, mass):
     is_heavy = mass >= 20
     
     # Dispatch to the correct stack
-    if is_bulky and is_heavy:
-        return "REJECTED"
-    
-    if is_bulky or is_heavy:
-        return "SPECIAL"
-        
-    return "STANDARD"
+    return "REJECTED" if is_bulky and is_heavy else "SPECIAL" if is_bulky or is_heavy else "STANDARD"
